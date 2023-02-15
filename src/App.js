@@ -1,12 +1,10 @@
 // import logo from './logo.svg';
-import './App.css';
+
+import Stack_file from "./Data_structures/Stack_file";
+
 
 function App() {
-  return (
-    <div className="App">
-      <h1>Algorithm Visualizer Runner</h1>
-    </div>
-  );
+  return <Stack_file />;
 }
 
 export default App;
