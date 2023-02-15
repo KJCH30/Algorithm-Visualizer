@@ -1,0 +1,8 @@
+.Array{
+    display: flex;
+    background-color: rgb(247, 246, 246);
+    width:fit-content;
+    padding: 0.5vw;
+    border-radius: 1vw;
+    box-shadow: 0 0 1vw rgb(208, 207, 207);
+}
