@@ -1,0 +1,16 @@
+.Home-main-activity{
+    display: flex;
+}
+.Home-panel{
+    margin:1vw;
+    width:15vw;
+    height:80vh;
+    background-color: rgb(211, 211, 210);
+    border-radius: 1vw;
+}
+.Home-workspace{
+    width:85vw;
+    margin: 1vw;
+    background-color: rgb(244, 244, 244);
+    border-radius: 1vw;
+}

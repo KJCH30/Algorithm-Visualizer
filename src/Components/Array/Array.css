@@ -1,8 +1,26 @@
-.Array{
+.draggable{
     display: flex;
     background-color: rgb(247, 246, 246);
     width:fit-content;
-    padding: 0.5vw;
+    padding: 0.25vw;
     border-radius: 1vw;
+    box-shadow: 0 0 1vw rgb(208, 207, 207);
+}
+.Array{
+    width:100%;
+    height:100%;
+    /* background-color: aquamarine; */
+}
+#handle{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    text-align: center;
+    /* font-size: small; */
+    padding:0.5vw;
+    border-radius: 10px;
+    background-color: rgb(255, 255, 255);
+    width: 1vw;
+    margin-bottom: 0.5vw;
     box-shadow: 0 0 1vw rgb(208, 207, 207);
 }

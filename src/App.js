@@ -1,13 +1,11 @@
 import './App.css';
-import Array from './Components/Array/Array';
-import Stack from "./Components/Stack/Stack";
+import Home from './Components/Screens/Home/Home';
 
 function App() {
   return (
     <div className="App">
       <h1>Algorithm Visualizer</h1>
-      <Array/>
-      <Stack/>
+      <Home/>
     </div>
   );
 
