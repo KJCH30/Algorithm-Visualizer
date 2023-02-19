@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css';
+import './Stack.css'
 
 const Stack = () => {
     const [num,setNum]=useState(0);
@@ -16,6 +17,7 @@ const Stack = () => {
             <h3>Stack {num}</h3>
             </button>
         </Tippy>
+
     </div>
   )
 }
