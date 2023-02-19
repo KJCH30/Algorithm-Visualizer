@@ -10,7 +10,6 @@ function Panel(props) {
   });
 
   const handleArrayLengthChange = (e) => {
-    // const name = e.target.name;
     const value = e.target.value;
     setState({
       ...state,
@@ -26,7 +25,6 @@ function Panel(props) {
     setState({
       ...state,
       DropDownArray: !state.DropDownArray,
-      // typeOfArray: state.typeOfArray,
     });
   };
   return (
@@ -41,7 +39,6 @@ function Panel(props) {
               >
                 Array
               </button>
-              {/* {console.log(state.DropDownArray)} */}
               {state.DropDownArray && (
                 <div className="DropDownArray">
                   <input
@@ -49,7 +46,6 @@ function Panel(props) {
                     type="number"
                     placeholder="Length"
                     name="lengthOfArray"
-                    // value={this.props.state.lengthOfArray}
                     onChange={handleArrayLengthChange}
                   />
                   <hr id="DropDownArray-separator" />
@@ -100,7 +96,6 @@ function Panel(props) {
               {console.log(state.lengthOfArray)}
             </div>
           </div>
-          {/* <DropDownArray/> */}
         </div>
         <div className="Home-workspace">
           {console.log(state.lengthOfArray)}

@@ -13,6 +13,10 @@ class Workspace extends React.Component {
   
 
   createNewArray=()=>{
+    this.props.setState({
+      ...this.props.state,
+      typeOfArray:null
+    })
     var arrayToAdd = [];
     for(var i=0; i<Math.min(this.props.lengthOfArray,10); i++){
       arrayToAdd.push(0);
@@ -21,10 +25,7 @@ class Workspace extends React.Component {
     console.log("kuch ho raha hai")
     console.log(this.props.typeOfArray)
     console.log(this.props.lengthOfArray)
-    this.props.setState({
-      ...this.props.state,
-      typeOfArray:null
-    })
+    
     
   }
   render(){
@@ -36,8 +37,6 @@ class Workspace extends React.Component {
         {this.props.typeOfArray!==null && this.createNewArray()}
         {console.log("Array: "+this.DataStructures.arrays)}
         {this.DataStructures.arrays.map((array)=><Array array={array}/>)}
-        {/* <Array array={[1,2,3]}/>
-        <Array array={[1,2,3]}/> */}
     </div>
         
   )
