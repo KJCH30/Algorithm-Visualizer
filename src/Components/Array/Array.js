@@ -4,19 +4,22 @@ import ElementArray from '../../Elements/ElementArray'
 import Draggable from 'react-draggable';
 
 
-function Array() {
-
-  var w = window.innerWidth;
-  var h = window.innerHeight;
-  //   const trackPos = (data) => {
-  //     setPosition({ x: data.x, y: data.y });
-  //  };
-  //  const [position, setPosition] = useState({ x: 0, y: 0 });
-    var tmp = [];
-    for (var i = 0; i < 10; i++) {
-      tmp.push(i);
-    }
-   const indents = tmp.map((i)=><ElementArray value={0} index={i}/>);
+class Array extends React.Component {
+    
+  
+   render(){
+    var w = window.innerWidth;
+    var h = window.innerHeight;
+    //   const trackPos = (data) => {
+    //     setPosition({ x: data.x, y: data.y });
+    //  };
+    //  const [position, setPosition] = useState({ x: 0, y: 0 });
+    console.log(this.props.array);
+      var tmp = this.props.array;
+      for (var i = 0; i < this.props.array.length; i++) {
+        tmp.push(i);
+      }
+    const indents = tmp.map((i)=><ElementArray value={0} index={i}/>);
     return (
       <div className='Array'>
         {/* w: {w}, h:{h} */}
@@ -37,6 +40,7 @@ function Array() {
       </div>
     );
   }
+}
 
 
 export default Array

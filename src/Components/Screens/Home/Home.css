@@ -1,16 +1,40 @@
 .Home-main-activity{
     display: flex;
 }
-.Home-panel{
-    margin:1vw;
-    width:15vw;
-    height:80vh;
-    background-color: rgb(211, 211, 210);
-    border-radius: 1vw;
-}
 .Home-workspace{
     width:85vw;
     margin: 1vw;
     background-color: rgb(244, 244, 244);
     border-radius: 1vw;
+}
+.Panel{
+    margin:1vw;
+    width:15vw;
+    height:80vh;
+    background-color: rgb(211, 211, 210);
+    border-radius: 1vw;
+    display: flex;
+    flex-direction: column;
+    z-index: 1;
+    align-items: center;
+    /* position: relative; */
+}
+#ku{
+    z-index: 9;
+}
+#Array-option-button{
+    width:6.5vw;
+    padding: 0.25vw;
+    border: none;
+    border-radius: 0.5vw;
+    font-size: 1vw;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+.Panel-Section-1{
+    /* background-color: aquamarine; */
+    width:100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: row;
 }
