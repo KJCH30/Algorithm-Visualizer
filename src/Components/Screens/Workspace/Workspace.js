@@ -4,31 +4,40 @@ import Array from '../../Array/Array'
 
 class Workspace extends React.Component {
     state = {
-      showArray : false,
+      
+    }
+
+    DataStructures = {
+      arrays : []
     }
   
 
-  // const createNewArray=()=>{
-  //   ;
-    
-  // }
-  render(){
-    let DataStructures = {
-      arrays : []
+  createNewArray=()=>{
+    var arrayToAdd = [];
+    for(var i=0; i<Math.min(this.props.lengthOfArray,10); i++){
+      arrayToAdd.push(0);
     }
+    this.DataStructures.arrays.push(arrayToAdd)
+    console.log("kuch ho raha hai")
+    console.log(this.props.typeOfArray)
+    console.log(this.props.lengthOfArray)
+    this.props.setState({
+      ...this.props.state,
+      typeOfArray:null
+    })
+    
+  }
+  render(){
+    
   return (
     <div className='Workspace'>
         Workspace Section
-        {/* {console.log(props.typeOfArray)} */}
-        {this.props.typeOfArray!==null?(<>
-          {DataStructures.arrays.push([1,2,3])}
-          {this.state.showArray=true}
-          {console.log("kuch ho raha hai")}
-          {this.props.setState({typeOfArray:null})}
-        </>):(<></>)}
-
-        {this.state.showArray && <Array array={DataStructures.arrays[0]}/>}
-        
+        {console.log(this.props.lengthOfArray)}
+        {this.props.typeOfArray!==null && this.createNewArray()}
+        {console.log("Array: "+this.DataStructures.arrays)}
+        {this.DataStructures.arrays.map((array)=><Array array={array}/>)}
+        {/* <Array array={[1,2,3]}/>
+        <Array array={[1,2,3]}/> */}
     </div>
         
   )

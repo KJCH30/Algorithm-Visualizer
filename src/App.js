@@ -1,11 +1,11 @@
 import './App.css';
-import Home from './Components/Screens/Home/Home';
+import Panel from './Components/Screens/Panel/Panel';
 
 function App() {
   return (
     <div className="App">
       <h1>Algorithm Visualizer</h1>
-      <Home/>
+      <Panel/>
     </div>
   );
 
