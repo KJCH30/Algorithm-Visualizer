@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import "./Panel.css";
 import Workspace from "../Workspace/Workspace";
 
@@ -85,10 +85,10 @@ function Panel(props) {
                     <div
                       className="DropDownArray-option"
                       onClick={() =>
-                        setState({ ...state, typeOfArray: "Float" })
+                        setState({ ...state, typeOfArray: "Boolean" })
                       }
                     >
-                      Float
+                      Boolean
                     </div>
                   </div>
                 </div>

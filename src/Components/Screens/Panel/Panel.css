@@ -2,15 +2,17 @@
     display: flex;
 }
 .Home-workspace{
-    width:85vw;
+    width:80vw;
+    height: 80vh;
     margin: 1vw;
+    padding: 0.5vw;
     background-color: rgb(244, 244, 244);
     border-radius: 1vw;
 }
 .Panel{
     margin:1vw;
     width:15vw;
-    height:80vh;
+    height:82vh;
     background-color: rgb(211, 211, 210);
     border-radius: 1vw;
     display: flex;
@@ -55,6 +57,7 @@
     position: fixed;
 }
 #DropDownArray-length{
+    font-size: 1vw;
     width:80%;
     height:1.5vw;
     text-align: center;

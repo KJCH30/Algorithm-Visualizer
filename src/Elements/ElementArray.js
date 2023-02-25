@@ -1,15 +1,50 @@
-import React from 'react'
-import './ElementArray.css'
+import React from "react";
+import "./ElementArray.css";
+// import Array from "../Components/Array/Array";
+// import Draggable from "react-draggable";
 
+class ElementArray extends React.Component{
+  // const [value, setValue] = useState(props.value);
+  state = {
+    value:this.props.value,
+    currentArray:this.props.array
+  } 
+  handleValueChange = (e) => {
+    const newValue = e.target.value;
+    // setValue(newValue);
+    this.setState({ value: newValue });
+    this.props.setCurrentArray(
+      ...this.props.array,
+      (this.props.array[this.props.index] = Number(newValue))
+    );
+  };
+  
+  
 
-function ElementArray(props) {
+  render(){
+    
   return (
-        <div className='ElementArray'>
-            <p id='ElementArray_value'> <input type="number" inputmode="numeric" autocomplete="off" id="array-value" name="array-value" placeholder='0'/></p>
-            <p id="ElementArray_index">{props.index}</p>
-        </div>
-      
-  )
+    // <Draggable>
+    <div className="ElementArray">
+      <p id="ElementArray_value">
+        {/* {" "} */}
+        <input
+          onChange={this.handleValueChange}
+          value={this.state.value}
+          type="number"
+          autoComplete="off"
+          id="array-value"
+          name="array-value"
+          placeholder="0"
+        />
+      </p>
+      <p id="ElementArray_index">{this.props.index}</p>
+      {/* {console.log(this.props.updateSortArray)} */}
+      {/* {this.props.updateSortArray?(<>{sortArray()}</>):(<></>)} */}
+    </div>
+    // </Draggable>
+  );
+}
 }
 
-export default ElementArray
+export default ElementArray;
