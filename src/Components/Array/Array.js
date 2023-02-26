@@ -1,30 +1,23 @@
-import React from 'react'
-import './Array.css'
-import ElementArray from '../../Elements/ElementArray'
+import React from "react";
+import "./Array.css";
+import ElementArray from "../../Elements/ElementArray";
+import Draggable from "react-draggable";
 
-
-function Array() {
-  // var tmp = [];
-  // for (var i = 0; i < this.props.level; i++) {
-  //   tmp.push(i);
-  // }
-  // var indents = tmp.map(function (i) {
-  //   return (
-  //     <span className='indent'></span>
-  //   );
-  // });
-  
-  var tmp = [];
-  for (var i = 0; i < 10; i++) {
-    tmp.push(i);
-  }
-  var indents = tmp.map((i)=><ElementArray value={0} index={i}/>);
-  
+function Array({ array }) {
+  console.log(array);
+  const indents = array.map((i,index) => <ElementArray value={0} index={index} />);
   return (
-    <div className='Array'>
-        {indents}
-    </div>
-  )
+    <Draggable handle="#handle" bounds={{ left: 0,}}>
+      <div className="Array">
+        <div style={{width: "100%" }}>
+          <img id="handle" src="/drag-indicator.png" alt="pan-icon" />
+          <div className="draggable">
+            {indents}
+          </div>
+        </div>
+      </div>
+    </Draggable>
+  );
 }
 
-export default Array
+export default Array;

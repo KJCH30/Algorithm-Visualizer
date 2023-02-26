@@ -2,48 +2,83 @@ import React, { useState } from 'react'
 //import Stackupperelements from '../../Elements/Stack/Stackupperelements';
 import './Stackstructure.css'
 import '../../Elements/Stack/Stackupperelements.css';
-import { useRef } from "react";
-import { useStackState } from "rooks";
-//import Visibility from '../../Component_features/visibility';
-//import Pushpopbut from './pushpopbut';
+import Draggable from "react-draggable";
+
 
 
 export default function Stackstructure(props){
-    const [val,addVal]=useState("");
     
-    // const numberToPushRef = useRef(0);
-    const [list,{push,pop,peek,length},
-         listInReverse] = useStackState([]);
-        
-    // function addToStack() {
-    //     numberToPushRef.current = numberToPushRef.current+1;
-    //     push(props.value);
-    // }
+    const [stack, setStack] = useState([]);
+    const [inputValue, setInputValue] = useState('');
 
-    const handleSubmit=(e)=>{
-        e.preventDefault();
-        if(val && length<=6){
-            push(val)
-            addVal("")
-        }
-    }
+
+  const pushItem = (item) => {
+    if (inputValue === '') {
+        return;
+      }
+      setStack([...stack, inputValue]);
+      setInputValue('');
+  };
+
+  const popItem = () => {
+    if (stack.length === 0) {
+        return;
+      }
+      const newStack = [...stack];
+      newStack.pop();
+      setStack(newStack);
+  };
+
+//   const peek = () => {
+//     if (stack.length === 0) {
+//         return null;
+//       }
+//       const lastItem = stack[stack.length - 1];
+//       for (let i = stack.length - 2; i >= 0; i--) {
+//         if (stack[i] === lastItem) {
+//           return null;
+//         }
+//       }
+//       return lastItem;
+//   };
+
+  const handleChange = (event) => {
+    setInputValue(event.target.value);
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    pushItem();
+    
+  };
+
 
 
   return (
+    <Draggable handle="#handle" bounds={{ left: 0 }}>
     <div className="maincontainer">
-    <div className="stackblock">
-       {listInReverse.map((item) => {
-                    return <div className='individualstackblock' key={item}>{item}</div>;
+    <div className="stackblock" >          
+       {stack.slice().reverse().map((item,index) => {
+                    return <div className='individualstackblock' key={index} style={{ color: index === 0 ? 'green' : 'black' }}>
+                        {item}
+                     </div>;
                 })}
     </div>
     <div className="pushpopbutton">
        <div className='Inputarea'>
-        <p1>Enter the element value:</p1>
         <form className="submitarea" onSubmit={handleSubmit}>
-        <input type="text" id="inputvalue" value={val} onChange={(e)=>addVal(e.target.value)}/>
-        <div className="but"><button onClick={handleSubmit} className="but" id="btn">Push</button></div>
+        <div className="but">
+            <button type='submit' class="pushbuttonbut">
+            <img onClick={pushItem} src='./pushbutton.png' alt="Push button" height="20" width="20" />
+            </button>
+        </div>
+        <div className='handler'>
+        <input type="text" id="inputvalue" value={inputValue} onChange={handleChange}/>
+        <img id="handle" src="/drag-indicator.png" alt="pan-icon" />
+        </div>
         <div className="but2">
-        <button className="butpop2" id="btnpop" onClick={pop}>Pop</button> </div>
+        <img onClick={popItem} src="./popbutton.png" alt="Push button" height="23" width="23" />
+        </div>
         </form>
        </div>
        {/* <p>peek:{peek()}</p>
@@ -51,6 +86,6 @@ export default function Stackstructure(props){
        {/* <p>length: {length}</p> */}
     </div>
        
-    </div>);
+    </div></Draggable>);
 }
 
