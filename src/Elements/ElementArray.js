@@ -1,5 +1,6 @@
 import React from "react";
 import "./ElementArray.css";
+import axios from "axios";
 // import Array from "../Components/Array/Array";
 // import Draggable from "react-draggable";
 
@@ -12,6 +13,9 @@ class ElementArray extends React.Component{
   handleValueChange = (e) => {
     const newValue = e.target.value;
     // setValue(newValue);
+    axios.post("http://localhost:8800/updateArrayIndex/Arrays."+this.props.arrayIndex+"."+this.props.index+"/"+newValue).then((response) => {
+      console.log("Updated")
+    })
     this.setState({ value: newValue });
     this.props.setCurrentArray(
       ...this.props.array,

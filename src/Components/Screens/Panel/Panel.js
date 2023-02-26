@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import React, { useState} from "react";
 import "./Panel.css";
 import Workspace from "../Workspace/Workspace";
 
@@ -16,7 +16,7 @@ function Panel(props) {
       lengthOfArray: value,
     });
     console.log(value);
-    console.log(this.props.lengthOfArray);
+    console.log(props.lengthOfArray);
   };
   const handleDropDownArray = () => {
     console.log(state.DropDownArray);

@@ -1,51 +1,49 @@
-import React from 'react'
-import './Workspace.css'
-import Array from '../../Array/Array'
+import React, { useEffect, useState } from "react";
+import "./Workspace.css";
+import Array from "../../Array/Array";
+import axios from "axios";
 
-class Workspace extends React.Component {
-    state = {
-      
-    }
-
-    DataStructures = {
-      arrays : []
-    }
+function Workspace(props) {
+  const [arr, setArrays] = useState([]);
   
-
-  createNewArray=()=>{
-    this.props.setState({
-      ...this.props.state,
-      typeOfArray:null
+  useEffect(() => {
+    fetch("http://localhost:8800/Workspace/Structures", {
+      method: "GET",
+      headers: { Accept: "application/json" },
     })
+      .then((response) => response.json())
+      .then((result) => {
+        setArrays(result[0].Arrays);
+      });
+  });
+
+  const createNewArray = () => {
+    props.setState({
+      ...props.state,
+      typeOfArray: null,
+    });
     const arrayToAdd = [];
-    // console.log(Array.isArray(arrayToAdd))
-    for(var i=0; i<Math.min(this.props.lengthOfArray,10); i++){
+    for (var i = 0; i < Math.min(props.lengthOfArray, 10); i++) {
       arrayToAdd.push(0);
     }
-    
-    this.DataStructures.arrays.push((arrayToAdd))
-    
-    console.log("kuch ho raha hai")
-    console.log(this.props.typeOfArray)
-    console.log(this.props.lengthOfArray)
-    
-    
-  }
-  render(){
-    //  var temp = this.DataStructures.arrays[0];
-     
+
+    axios
+      .post("http://localhost:8800/updateAddNewArray", arrayToAdd)
+      .then((response) => {
+        console.log("Array added successfully");
+      });
+    console.log(props.typeOfArray);
+    console.log(props.lengthOfArray);
+  };
+
   return (
-    <div className='Workspace'>
-        {console.log(this.props.lengthOfArray)}
-        {this.props.typeOfArray!==null && this.createNewArray()}
-        {console.log(this.DataStructures.arrays)}
-        {console.log(typeof this.DataStructures.arrays[0])}
-        {/* {console.log("Temp->"+Array.isArray(this.DataStructures.arrays))} */}
-        {this.DataStructures.arrays.map((array)=><Array array={array}/>)}
+    <div className="Workspace">
+      {props.typeOfArray !== null && props.lengthOfArray>0 && createNewArray()}
+      {arr.map((element,index) => {
+        return <Array array={element} arrayIndex={index} allArrays={arr}/>;
+      })}
     </div>
-        
-  )
-}
+  );
 }
 
-export default Workspace
+export default Workspace;
