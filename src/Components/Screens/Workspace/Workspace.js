@@ -1,50 +1,49 @@
-import React,{useState} from 'react'
-import './Workspace.css'
-import Array from '../../Array/Array'
-import Stackstructure from '../../Stack/Stackstructure'
+import React, { useEffect, useState } from "react";
+import "./Workspace.css";
+import Array from "../../Array/Array";
+import axios from "axios";
 
-function Workspace(props){
-  const[arr,setArray] = useState([])
+function Workspace(props) {
+  const [arr, setArrays] = useState([]);
+  
+  useEffect(() => {
+    fetch("http://localhost:8800/Workspace/Structures", {
+      method: "GET",
+      headers: { Accept: "application/json" },
+    })
+      .then((response) => response.json())
+      .then((result) => {
+        setArrays(result[0].Arrays);
+      });
+  });
 
-  const createNewArray=()=>{
+  const createNewArray = () => {
     props.setState({
       ...props.state,
-      typeOfArray:null,
-    })
-    var arrayToAdd = [];
-    for(var i=0; i<Math.min(props.lengthOfArray,10); i++){
+      typeOfArray: null,
+    });
+    const arrayToAdd = [];
+    for (var i = 0; i < Math.min(props.lengthOfArray, 10); i++) {
       arrayToAdd.push(0);
     }
-    arr.arrays.push(arrayToAdd)
-    console.log("kuch ho raha hai")
-    console.log(props.typeOfArray)
-    console.log(props.lengthOfArray)
-  }
 
-  // const createNewStack=()=>{
-  //   props.setState({
-  //     ...props.state,
-  //     typeOfStack:null
-  //   })
-  //   console.log("kuch bhi "+console.log(props.typeOfStack))
-  // }
-    
+    axios
+      .post("http://localhost:8800/updateAddNewArray", arrayToAdd)
+      .then((response) => {
+        console.log("Array added successfully");
+      });
+    console.log(props.typeOfArray);
+    console.log(props.lengthOfArray);
+  };
+
   return (
-    <div className='Workspace'>
-        Workspace Section
-        {console.log("hg "+props.typeOfStack)}
-        {console.log(props.lengthOfArray)}
-        {props.typeOfArray!==null && props.lengthOfArray>0 && createNewArray()}
-        {console.log("Array: "+arr.arrays)}
-        {arr.map((array)=><Array array={array}/>)}
-        {props.typeOfStack!==null && <Stackstructure/>}
-        {/* {this.createNewStack()} */}
-        {console.log("at end "+props.typeOfStack)}
-        {console.log("at end array "+props.typeOfArray)}
-
+    <div className="Workspace">
+      {props.typeOfArray !== null && props.lengthOfArray>0 && createNewArray()}
+      {arr.map((element,index) => {
+        return <Array array={element} arrayIndex={index} allArrays={arr}/>;
+      })}
     </div>
-        
-  )
+  );
 }
 
-export default Workspace
+export default Workspace;
