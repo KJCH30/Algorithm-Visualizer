@@ -1,38 +1,49 @@
-import React from 'react'
-import './Workspace.css'
-import Array from '../../Array/Array'
+import React, { useEffect, useState } from "react";
+import "./Workspace.css";
+import Array from "../../Array/Array";
+import axios from "axios";
 
-class Workspace extends React.Component {
-    state = {
-      showArray : false,
-    }
+function Workspace(props) {
+  const [arr, setArrays] = useState([]);
   
+  useEffect(() => {
+    fetch("http://localhost:8800/Workspace/Structures", {
+      method: "GET",
+      headers: { Accept: "application/json" },
+    })
+      .then((response) => response.json())
+      .then((result) => {
+        setArrays(result[0].Arrays);
+      });
+  });
 
-  // const createNewArray=()=>{
-  //   ;
-    
-  // }
-  render(){
-    let DataStructures = {
-      arrays : []
+  const createNewArray = () => {
+    props.setState({
+      ...props.state,
+      typeOfArray: null,
+    });
+    const arrayToAdd = [];
+    for (var i = 0; i < Math.min(props.lengthOfArray, 10); i++) {
+      arrayToAdd.push(0);
     }
+
+    axios
+      .post("http://localhost:8800/updateAddNewArray", arrayToAdd)
+      .then((response) => {
+        console.log("Array added successfully");
+      });
+    console.log(props.typeOfArray);
+    console.log(props.lengthOfArray);
+  };
+
   return (
-    <div className='Workspace'>
-        Workspace Section
-        {/* {console.log(props.typeOfArray)} */}
-        {this.props.typeOfArray!==null?(<>
-          {DataStructures.arrays.push([1,2,3])}
-          {this.state.showArray=true}
-          {console.log("kuch ho raha hai")}
-          {this.props.setState({typeOfArray:null})}
-        </>):(<></>)}
-
-        {this.state.showArray && <Array array={DataStructures.arrays[0]}/>}
-        
+    <div className="Workspace">
+      {props.typeOfArray !== null && props.lengthOfArray>0 && createNewArray()}
+      {arr.map((element,index) => {
+        return <Array array={element} arrayIndex={index} allArrays={arr}/>;
+      })}
     </div>
-        
-  )
-}
+  );
 }
 
-export default Workspace
+export default Workspace;
